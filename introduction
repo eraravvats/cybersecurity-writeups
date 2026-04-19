@@ -1,0 +1,13 @@
+#CYBERSEC INTRODUCTION
+
+-Offensive Security = thinking like an attacker to find weaknesses before real hackers do.
+-Defensive security = process of defending and securing devices and systems.
+
+## Dirb is a web content scanner used to discover hidden directories and files on a web server by brute-forcing common paths. It helps identify accessible endpoints that may not be linked or visible through normal browsing, which can be crucial for penetration testing and vulnerability assessments.
+## example: dirb http://fakebank.thm
+
+## Intrusion Detection System (IDS) is a system that detects unauthorised network and system intrusions. Examples include detecting unauthorised devices connected to the local network and unauthorised users accessing a system or modifying a file.
+
+#WHAT I LEARNED SO FAR
+-dirb = to discover hidden directories by bruteforcing common paths
+-IDS = a system that tracks malacious signals
