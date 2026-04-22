@@ -1,0 +1,35 @@
+#NETWORKING = Things connected -a network can be between two and billions of devices 
+
+##INTERNET = A network in which devices are connected 
+- Consists of billions of small networks 
+- came into light with the creation of the World Wide Web (WWW) 
+- The small networks are called PRIVATE NETWORKS 
+- Networks connecting these small networks are called PUBLIC NETWORKS 
+
+##IP(INTERNET PROTOCOL) ADDRESSES = An address for the device or a network to be identifiable 
+###PUBLIC IP = Identifies a small network in the vast internet 
+###PRIVATE IP = Identifies a single device inside that small network 
+##FORMAT OF AN IP: 
+###IPv4: - Consists of 4 octets 
+- Each octet consists of 8 bits ranging from 0 to 255 
+- Number of total IP addresses supported is 2^32 = ~4 billion (That's why we have a shortage) 
+eg: 192.168.1.1 
+
+###IPv6: - Supports up to 340 trillion IP addresses 
+- More efficient due to new methodologies 
+- operates in total 128 bits 
+- operates in hexadecimal units 
+eg: 2001:0db8:3333:4444:5555:6666:7777:8888 
+
+##MAC (Media Access Control) ADDRESSES 
+- MAC address is a twelve-character hexadecimal number (a base sixteen numbering system used in computing to represent numbers) split into two's and separated by a colon 
+- It's a unique identity to every device given to them when built in factories 
+- The first six characters represent the company that made the device, and the remaining six are unique characters 
+eg: 00:1A:2B:3C:4D:5E 
+
+###MAC Spoofing = pretending to be another device by changing your MAC address 
+- MAC addresses provide weak security and can be easily spoofed 
+eg: Assuming I am at a hotel, I can easily spoof the MAC address of the admin's device through which I can get admin-level access 
+
+##PING = It is a parameter that is used by measuring the speed of the travel of ICMP(Internet Control Message Protocol) packets, through which we can measure the quality of our internet connection
+syntax to measure ping: ping IP or ping WEBSITE URL
