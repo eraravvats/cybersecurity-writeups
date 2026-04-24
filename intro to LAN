@@ -1,0 +1,346 @@
+# LAN (Local Area Network)
+- Network of devices in a small area (home, office, college)
+- Can work without internet but usually connected via router
+- Uses private IP addresses
+
+# COMPONENTS OF LAN
+
+## DEVICES
+- Examples: phones, laptops
+- Have:
+  - Private IP
+  - MAC Address
+
+## ROUTER
+- Connects LAN to internet
+- Acts as mediator between local network and outside world
+- Assigns IP (DHCP)
+- Performs NAT (private → public IP)
+- Example: home WiFi router
+
+## SWITCH
+- Connects multiple devices in LAN
+- Uses MAC address to forward data
+- Sends data only to correct device
+- Example: data center / lab switch
+
+## ACCESS POINT
+- Provides wireless connection (WiFi)
+- Connects wireless devices to LAN
+- Example: home WiFi
+
+## TRANSMISSION
+- Wired: Ethernet cable
+- Wireless: WiFi signals
+
+# TOPOLOGIES
+- Arrangement of connections of devices in a network
+- Defines structure, data flow, efficiency, vulnerability
+
+## STAR TOPOLOGY
+Pros:
+- Fast
+- Easy to manage
+Cons:
+- If central device fails → network fails
+
+## BUS TOPOLOGY
+Pros:
+- Simple
+- Cheap
+Cons:
+- Backbone failure breaks entire network
+
+## RING TOPOLOGY
+Pros:
+- Structured data flow
+Cons:
+- One break stops network
+
+## MESH TOPOLOGY
+Pros:
+- Very reliable
+- Multiple paths
+Cons:
+- Complex
+- Expensive
+
+# HOW LAN WORKS (CORRECT FLOW)
+- Internet connects to router
+- Router assigns IP using DHCP
+- Device gets identity (IP)
+- Device uses ARP to find MAC of target device
+- Switch forwards data using MAC
+- Data reaches correct device
+
+# SUBNETTING (CORE CONCEPT)
+
+## What is Subnetting?
+Subnetting = dividing one large network into smaller networks (subnets)
+
+---
+
+## Why Subnetting?
+- Reduces network congestion
+- Improves performance
+- Increases security (isolates networks)
+- Makes management easier
+
+---
+
+## Core Idea
+
+Every IP address has 2 parts:
+- Network part
+- Host part
+
+Subnetting changes:
+👉 how much is network vs host
+
+---
+
+## Example (Understand This Properly)
+
+Network:
+192.168.1.0/24
+
+- One big network
+- Range: 0–255
+- ~254 devices
+
+---
+
+Now subnet it:
+
+192.168.1.0/26
+
+👉 The last part (0–255) is divided into equal blocks
+
+Block size = 64
+
+So new subnets:
+
+- 192.168.1.0     → 0–63
+- 192.168.1.64    → 64–127
+- 192.168.1.128   → 128–191
+- 192.168.1.192   → 192–255
+
+---
+
+## What Changed?
+
+Before:
+- 1 large network
+
+After:
+- 4 smaller networks
+
+---
+
+## Inside Each Subnet
+
+Example: 192.168.1.64/26
+
+- Network: 192.168.1.64
+- Broadcast: 192.168.1.127
+- Usable: 65–126
+
+---
+
+## Key Concept (IMPORTANT)
+
+Subnetting = breaking range into equal chunks
+
+- Block size decides chunk size  
+- CIDR decides block size  
+
+---
+
+## Simple Pattern
+
+/24 → 1 network  
+/25 → 2 networks  
+/26 → 4 networks  
+/27 → 8 networks  
+
+- More CIDR = more subnets = fewer devices per subnet
+
+---
+
+## Mental Model
+
+- Big network = one big city
+- Subnetting = dividing into sectors
+
+- Easier to control and manage
+
+# ARP (Address Resolution Protocol)
+
+## What is ARP?
+- Finds MAC address using IP
+- Converts: IP → MAC
+
+## Why ARP?
+- Devices know IP
+- Data is sent using MAC
+- ARP connects both
+
+## How ARP Works
+1. Device knows target IP
+2. Sends broadcast: "Who has this IP?"
+3. Target replies with MAC
+4. Data is sent using MAC
+
+## ARP Table
+- Stores IP ↔ MAC mapping
+- Avoids repeating ARP requests
+
+## Important
+- Works only in LAN
+- Uses broadcast
+
+## ARP Attack (ARP Spoofing)
+- Attacker sends fake ARP reply
+- Pretends to be another device (like router)
+- Traffic goes through attacker
+
+# DHCP (Dynamic Host Configuration Protocol)
+
+## What is DHCP?
+- Automatically assigns IP address to devices
+
+## Why DHCP?
+- Manual IP assignment is slow and error-prone
+- Prevents IP conflicts
+
+## What DHCP Provides
+- IP address
+- Subnet mask
+- Default gateway
+- DNS server
+
+## How DHCP Works (DORA)
+1. Discover → Device asks for IP
+2. Offer → Server offers IP
+3. Request → Device accepts
+4. Acknowledge → Server confirms
+
+## Example
+- Device connects to WiFi
+- Router assigns:
+  - IP: 192.168.1.10
+  - Gateway: 192.168.1.1
+
+## Without DHCP
+- Manual IP setup needed
+- High chance of conflicts
+
+# ARP vs DHCP
+
+- DHCP → gives IP (identity)
+- ARP → finds MAC (location)
+
+Flow:
+1. DHCP assigns IP
+2. ARP finds MAC
+3. Data is sent
+
+# IP ADDRESS BASICS
+- IP = Network part + Host part
+- Network part identifies network
+- Host part identifies device
+
+# IMPORTANT TERMS
+
+## NETWORK ADDRESS
+- First IP of subnet
+- Identifies network
+- Not usable
+
+## BROADCAST ADDRESS
+- Last IP of subnet
+- Sends data to all devices
+- Not usable
+
+## HOST ADDRESSES
+- Usable IPs for devices
+- Range between network and broadcast
+
+## DEFAULT GATEWAY
+- Router IP
+- Used to access internet
+
+# SUBNETTING
+- Dividing a large network into smaller networks
+
+Why:
+- Better organization
+- Better performance
+- Better security
+- Easier management
+
+# SUBNET MASK & CIDR
+
+## SUBNET MASK
+- Defines network vs host part
+- Controls network size
+
+## CIDR
+- Written as /24, /26 etc
+- Number of network bits
+- Higher CIDR = smaller network
+
+## CIDR QUICK VALUES
+0   → /24
+128 → /25
+192 → /26
+224 → /27
+240 → /28
+248 → /29
+252 → /30
+
+# KEY FORMULAS
+- Block size = 256 − last octet
+- Usable = block size − 2
+
+# SUBNET EXAMPLES
+
+## Example 1
+255.255.255.224
+- CIDR: /27
+- Block size: 32
+- Usable: 30
+
+## Example 2
+255.255.255.240
+- CIDR: /28
+- Block size: 16
+- Usable: 14
+
+## Example 3
+255.255.255.248
+- CIDR: /29
+- Block size: 8
+- Usable: 6
+
+# SUBNET LOGIC
+- Range 0–255 is split into equal blocks
+- Block size determines subnet ranges
+
+Example (/26):
+0–63
+64–127
+128–191
+192–255
+
+# IMPORTANT RULES
+- First IP = Network (not usable)
+- Last IP = Broadcast (not usable)
+- Middle IPs = usable hosts
+
+# WHAT I LEARNED
+- DHCP gives identity (IP)
+- ARP finds device (MAC)
+- Switch delivers data
+- Router connects to internet
+- Subnetting divides networks
