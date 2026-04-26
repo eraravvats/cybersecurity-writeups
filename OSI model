@@ -1,0 +1,218 @@
+# OSI Model (Overview)
+
+## What is OSI Model?
+- A framework that divides network communication into 7 layers
+- Each layer performs a specific function
+- Data passes through all layers when sent or received
+
+## Why OSI Model?
+- Makes network communication structured
+- Helps in debugging issues
+- Easier to understand how data flows
+
+## How OSI Works
+
+### Sending Data (Sender Side)
+- Data moves from top → bottom
+- Each layer adds its own information (header)
+
+👉 This process is called Encapsulation
+
+### Receiving Data (Receiver Side)
+- Data moves from bottom → top
+- Each layer removes its information
+
+👉 This process is called Decapsulation
+
+## Starting & Ending Points
+- Starting layer → Application Layer (Layer 7)
+- Ending layer → Physical Layer (Layer 1)
+- Then reverse happens on receiver side
+
+## Key Concept
+- Each layer adds extra information (header)
+- Examples:
+  - IP address
+  - MAC address
+  - Port numbers
+
+## Why Important (Cybersecurity)
+- Helps identify where a problem or attack occurs
+- Example:
+  - IP issue → Network layer
+  - MAC issue → Data Link layer
+  - Port issue → Transport layer
+
+## Summary
+- OSI = step-by-step data flow system
+- Encapsulation → adding data layer by layer
+- Decapsulation → removing data layer by layer
+
+# OSI Layer 7 — Application Layer
+
+## What is it?
+- Closest layer to the user
+- Interface between user and network
+
+## What it does
+- Prepares request for communication
+- Sends user data to lower layers
+- Receives responses from network
+
+## Important
+- Does NOT deal with IP, MAC, or transmission
+- Only handles user-level interaction
+
+## Protocols (examples)
+- DNS → resolves domain to IP
+- HTTP/HTTPS → web communication
+
+## Example
+User types: google.com  
+→ Application layer creates request  
+→ Uses DNS to find IP  
+→ Sends request down the OSI model
+
+## Summary
+- User interacts here
+- Request starts here
+- Uses protocols to communicate
+
+ROLE: Communicator to send request
+
+# OSI Layer 6 — Presentation Layer
+
+## What is it?
+- Handles how data is presented to the system
+
+## What it does
+- Encryption (secure data)
+- Decryption (read data)
+- Formatting (convert data format)
+
+## Example
+- HTTPS encrypts data before sending
+- Data is decrypted on receiving
+
+## Summary
+- Makes data readable and secure
+
+ROLE: Godfather and translator of data
+
+# OSI Layer 5 — Session Layer
+
+## What is it?
+- Manages communication sessions between devices
+
+## What it does
+- Establishes session
+- Maintains session
+- Terminates session
+
+## Important
+- Does NOT split data
+- Only manages connection state
+
+## Example
+- Staying logged into a website
+
+## Summary
+- Keeps communication active between devices
+
+ROLE: guardian
+
+# OSI Layer 4 — Transport Layer
+
+## What is it?
+- Ensures data is delivered correctly between devices
+
+## What it does
+- Segmentation → breaks data
+- Reassembly → rebuilds data
+- Reliability → ensures correct delivery
+- Error handling → resends missing data
+- Flow control → prevents overload
+
+## TCP (Transmission Control Protocol)
+- Reliable
+- Checks delivery
+- Maintains order
+- Slower
+
+## UDP (User Datagram Protocol)
+- Fast
+- No checking
+- No guarantee
+- Used where speed matters
+
+## Key Idea
+- TCP = accuracy
+- UDP = speed
+
+ROLE: Driver
+
+# OSI Layer 3 — Network Layer
+
+## What is it?
+- Responsible for logical addressing and routing
+
+## What it does
+- Assigns IP address
+- Determines path for data
+- Routes data between networks
+- Uses protocols like OSPF(open shortest path first) and RIP(routing information protocol)
+
+## Important
+- Does NOT split or combine data
+- Works with IP addresses
+
+## Example
+- Sending data across internet using IP routing
+
+## Summary
+- Finds the path using IP
+
+ROLE: Postman
+
+# OSI Layer 2 — Data Link Layer
+
+## What is it?
+- Handles data transfer within a local network (LAN)
+
+## What it does
+- Adds MAC address
+- Identifies devices in LAN
+- Works with switches
+- Ensures correct local delivery
+
+## Important
+- Does NOT handle IP
+- Does NOT handle physical signals
+
+## Summary
+- Delivers data locally using MAC
+
+ROLE: Factory Head
+
+# OSI Layer 1 — Physical Layer
+
+## What is it?
+- Lowest layer of OSI model
+
+## What it does
+- Transmits raw data as signals
+- Handles electrical, optical, or wireless transmission
+
+## Mediums
+- Ethernet cables
+- Fiber optics
+- WiFi signals
+
+## Important
+- Does NOT understand data
+- Only transmits bits (0s and 1s)
+
+## Summary
+- Responsible for physical transmission of data
+
+ROLE: 1950s
