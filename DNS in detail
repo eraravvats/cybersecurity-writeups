@@ -1,0 +1,135 @@
+# DNS (Domain Name System)
+
+## What is DNS?
+- Converts domain names → IP addresses
+- Humans understand names
+- Computers communicate using IPs
+
+Example:
+google.com → 142.x.x.x
+
+## Why DNS is Needed
+Without DNS:
+- users would need to memorize IP addresses of websites
+
+DNS acts like:
+- internet phonebook/translator
+
+## Main Function
+- Helps browser locate correct server
+- Converts human-readable names → machine-readable IPs
+
+## DNS Resolution Cycle
+
+1. User enters domain name
+2. Computer checks local DNS cache
+3. If IP not found locally:
+   - request sent to Recursive DNS Server
+4. Recursive server checks its own cache
+5. If still not found:
+   - Recursive server contacts Root DNS Server
+6. Root server identifies TLD
+   Example:
+   - .com
+7. Request redirected to correct TLD Server
+8. TLD Server identifies Authoritative DNS Server
+9. Request sent to Authoritative DNS Server
+10. Authoritative server returns actual DNS records/IP
+11. Recursive server caches response temporarily
+12. IP returned to client computer
+13. Browser connects to server
+14. TCP connection established
+15. HTTP request sent
+16. Website loads
+
+## DNS Servers
+
+### Recursive DNS Server
+- Searches for IP on behalf of client
+- Usually provided by:
+  - ISP
+  - Google DNS
+  - Cloudflare DNS
+
+Examples:
+- 8.8.8.8
+- 1.1.1.1
+
+### Root DNS Server
+- Backbone of DNS hierarchy
+- Redirects request to correct TLD server
+- Does NOT know actual website IP
+
+### TLD Server
+- Handles specific TLDs
+Examples:
+- .com
+- .org
+- .in
+
+- Knows which authoritative server manages domain
+
+### Authoritative DNS Server
+- Stores actual DNS records for domain
+- Returns final IP address
+
+## DNS Cache
+- Temporarily stores resolved domains/IPs
+- Improves speed
+- Reduces repeated DNS requests
+
+## TTL (Time To Live)
+- Defines how long DNS response stays cached
+
+Example:
+TTL = 3600
+→ cache response for 1 hour
+
+## DNS Record Types
+
+### A Record
+- Domain → IPv4 address
+
+### AAAA Record
+- Domain → IPv6 address
+
+### CNAME Record
+- Domain alias → another domain
+
+Example:
+www.google.com → google.com
+
+### MX Record
+- Defines mail server for domain
+- Used for email routing
+
+### TXT Record
+- Stores plain text information
+- Used for:
+  - verification
+  - email security
+  - ownership proof
+
+## Domain Hierarchy
+
+Example:
+www.google.com
+
+- .com → Top Level Domain (TLD)
+- google → Second Level Domain
+- www → Subdomain
+
+Domains are read:
+RIGHT → LEFT
+
+## Important Cybersecurity Insight
+DNS manipulation can redirect users to fake websites.
+
+Examples:
+- DNS Spoofing
+- DNS Poisoning
+
+Purpose:
+- phishing
+- credential theft
+- malicious redirection
