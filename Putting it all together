@@ -1,0 +1,537 @@
+# Putting It All Together
+
+# Complete Website Architecture
+
+```text
+Browser (Client)
+↓
+Web Server
+↓
+Backend/Application Logic
+↓
+Database
+```
+
+# Complete Web Flow
+
+```text
+User enters domain
+↓
+DNS resolves domain → IP
+↓
+Browser establishes TCP connection
+↓
+Browser sends HTTP request
+↓
+Web server receives request
+↓
+Backend processes request
+↓
+Backend communicates with database
+↓
+Database returns data
+↓
+Backend creates response
+↓
+Server sends HTTP response
+↓
+Browser renders webpage
+↓
+Cookies/sessions maintain login state
+```
+
+# Frontend
+- User-facing/client-side part of website
+- Runs in browser
+
+Technologies:
+- HTML
+- CSS
+- JavaScript
+
+Handles:
+- forms
+- buttons
+- layouts
+- user interaction
+
+# Backend
+- Server-side application logic
+
+Handles:
+- authentication
+- sessions
+- APIs
+- database communication
+- business logic
+
+Languages:
+- Python
+- JavaScript (Node.js)
+- PHP
+- Java
+- Go
+
+# Web Server
+- Handles HTTP traffic
+- Receives requests and sends responses
+
+Examples:
+- Apache
+- Nginx
+
+# Database
+- Organized persistent storage system
+
+Stores:
+- users
+- passwords
+- posts
+- comments
+- transactions
+
+Examples:
+- PostgreSQL
+- MySQL
+- MongoDB
+
+# HTTP Request/Response Model
+
+## Request
+- Sent from client → server
+
+Examples:
+```http
+GET /login
+POST /login
+```
+
+## Response
+- Sent from server → client
+
+Example:
+```http
+HTTP/1.1 200 OK
+```
+
+# Cookies and Sessions
+
+## Session
+- Stored on server
+- Contains user/session data
+
+## Cookie
+- Stored in browser
+- Usually stores session ID/token
+
+# Login Flow
+
+```text
+User enters credentials
+↓
+Browser sends POST /login
+↓
+Backend checks database
+↓
+Session created
+↓
+Server sends Set-Cookie header
+↓
+Browser stores cookie
+↓
+Future requests include cookie
+↓
+Server recognizes authenticated user
+```
+
+# APIs
+- Allow applications/systems to communicate
+
+Usually use:
+- HTTP
+- JSON
+
+Example JSON:
+
+```json
+{
+  "username": "arav",
+  "followers": 120
+}
+```
+
+# Static vs Dynamic Websites
+
+## Static Website
+- Same content for every user
+- Usually HTML/CSS only
+
+## Dynamic Website
+- Content changes based on:
+  - user
+  - database
+  - interaction
+
+Requires:
+- backend
+- database
+
+# Common Web Attack Surfaces
+
+## Frontend
+- HTML Injection
+- XSS
+
+## Requests
+- Parameter tampering
+
+## Authentication
+- Auth bypass
+- Weak credentials
+
+## Cookies/Sessions
+- Session hijacking
+- Cookie theft
+
+## Backend
+- Logic flaws
+
+## Database
+- SQL Injection
+
+# Important Cybersecurity Principle
+Never trust user input.
+
+# Core Cybersecurity Understanding
+Cybersecurity is:
+- understanding systems deeply
+- identifying trust failures
+- manipulating weak assumptions securely/legally
+
+# Final Important Realization
+Modern websites are built from interconnected systems:
+
+```text
+Frontend
+↓
+HTTP Requests/Responses
+↓
+Backend Logic
+↓
+Database
+↓
+Sessions/Cookies
+↓
+Rendered Response
+```
+
+Understanding this architecture is foundational for:
+- web security
+- bug bounty
+- APIs
+- pentesting
+- application security
+
+# Web Infrastructure Components
+
+# Load Balancer
+
+## What is Load Balancer?
+- Distributes traffic across multiple servers
+- Prevents server overload
+- Improves reliability and scalability
+
+## Flow
+
+```text
+Users
+↓
+Load Balancer
+↓
+Server 1
+Server 2
+Server 3
+```
+
+## Main Functions
+- traffic distribution
+- failover handling
+- performance improvement
+
+## Examples
+- Nginx
+- HAProxy
+- AWS ELB
+
+# CDN (Content Delivery Network)
+
+## What is CDN?
+- Network of globally distributed servers
+- Stores cached copies of website content
+
+## Purpose
+- reduce latency
+- improve loading speed
+- reduce server load
+- provide DDoS protection
+
+## Usually Stores
+- images
+- videos
+- CSS
+- JavaScript
+- static files
+
+## Examples
+- Cloudflare
+- Akamai
+- AWS CloudFront
+
+# Database
+
+## What is Database?
+- Organized persistent storage system
+
+Stores:
+- users
+- passwords
+- posts
+- transactions
+
+# Relational Database (SQL)
+- Uses tables, rows, columns
+
+Examples:
+- PostgreSQL
+- MySQL
+
+Example Table:
+
+| id | username |
+|---|---|
+| 1 | arav |
+
+# NoSQL Database
+- Flexible structure
+- Often used for scalability/caching
+
+Examples:
+- MongoDB
+- Redis
+
+# WAF (Web Application Firewall)
+
+## What is WAF?
+- Security layer between user and website
+- Filters malicious web traffic
+
+## Flow
+
+```text
+User
+↓
+WAF
+↓
+Website
+```
+
+## Detects/Blocks
+- SQL Injection
+- XSS
+- malicious requests
+- suspicious payloads
+
+## Purpose
+- protection
+- filtering
+- monitoring
+- attack mitigation
+
+# Real-World Website Architecture
+
+```text
+User
+↓
+CDN
+↓
+WAF
+↓
+Load Balancer
+↓
+Backend Servers
+↓
+Database
+```
+
+# How Web Servers Work
+
+# Web Server
+
+## What is Web Server?
+- Software that listens for incoming HTTP requests
+- Delivers web content/resources to clients
+
+## Examples
+- Apache
+- Nginx
+- IIS
+- NodeJS
+
+# Basic Web Server Flow
+
+Browser sends HTTP request
+↓
+Web server receives request
+↓
+Requested files/resources processed
+↓
+HTTP response returned
+
+# Root Directory
+- Default directory from which web server serves files
+
+## Linux
+
+/var/www/html
+
+## Windows
+
+C:\inetpub\wwwroot
+
+# Example
+
+Request:
+
+http://example.com/picture.jpg
+
+Web server may return:
+
+/var/www/html/picture.jpg
+
+# Virtual Hosts
+
+## What are Virtual Hosts?
+- Allow one web server to host multiple websites/domains
+
+## How it Works
+- Web server checks Host header from HTTP request
+- Matches requested hostname to correct website configuration
+
+Example:
+
+```http
+Host: google.com
+```
+
+## Example Mapping
+
+google.com → /var/www/google  
+youtube.com → /var/www/youtube
+
+# Static Content
+
+## What is Static Content?
+- Content that does NOT change
+
+Examples:
+- images
+- CSS
+- JavaScript
+- fixed HTML
+
+## Important
+- Served directly from web server
+
+# Dynamic Content
+
+## What is Dynamic Content?
+- Content changes based on:
+  - user
+  - database
+  - interaction
+  - request
+
+Examples:
+- Instagram feed
+- dashboards
+- search results
+
+# Dynamic Website Flow
+
+Browser request
+↓
+Backend code executes
+↓
+Database queried
+↓
+Dynamic content generated
+↓
+HTTP response returned
+
+# Backend Languages
+
+## Purpose
+- Create dynamic/interactive websites
+
+## Examples
+- PHP
+- Python
+- NodeJS
+- Ruby
+- Java
+
+# PHP Example
+
+Request:
+
+index.php?name=adam
+
+Backend Code:
+
+```php
+<?php echo $_GET["name"]; ?>
+```
+
+Output:
+
+```html
+Hello adam
+```
+
+# Frontend vs Backend
+
+## Frontend
+- User-facing/client-side part
+- Runs in browser
+
+Technologies:
+- HTML
+- CSS
+- JavaScript
+
+## Backend
+- Server-side processing logic
+
+Handles:
+- authentication
+- APIs
+- databases
+- sessions
+- dynamic content
+
+# Important Cybersecurity Insight
+Dynamic backend systems create attack surfaces because they process:
+- user input
+- requests
+- cookies
+- parameters
+- database queries
+
+This can lead to:
+- SQL Injection
+- XSS
+- authentication flaws
+- logic vulnerabilities
+
+# Important Security Principle
+Never trust user input.
