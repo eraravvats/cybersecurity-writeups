@@ -1,0 +1,374 @@
+# HTTP IN DETAIL
+
+# HTTP (HyperText Transfer Protocol)
+
+## What is HTTP?
+- Protocol used for communication between client and web server
+- Defines rules for requests and responses
+- Transfers webpages/resources over internet
+
+## Basic Web Flow
+
+```text
+User enters domain
+↓
+DNS resolves IP
+↓
+TCP connection established
+↓
+Browser sends HTTP request
+↓
+Server sends HTTP response
+↓
+Browser renders webpage
+```
+
+# Client and Server
+
+## Client
+- Requests data/resources
+Examples:
+- Browser
+- Mobile app
+
+## Server
+- Stores/processes website data
+- Responds to client requests
+
+# HTTP Request
+- Message sent from client → server
+
+Example:
+
+```http
+GET / HTTP/1.1
+```
+
+## Breakdown
+- GET → HTTP method
+- / → requested resource/homepage
+- HTTP/1.1 → protocol version
+
+# HTTP Response
+- Message sent from server → client
+
+Example:
+
+```http
+HTTP/1.1 200 OK
+```
+
+## Breakdown
+- HTTP/1.1 → protocol version
+- 200 → status code
+- OK → successful request
+
+# HTTP Methods
+
+## GET
+- Requests/receives data
+
+Example:
+
+```http
+GET /login
+```
+
+Meaning:
+- request login page
+
+## POST
+- Sends data to server
+
+Example:
+
+```http
+POST /login
+```
+
+Meaning:
+- send login credentials/data
+
+## PUT
+- Updates existing data/resource
+
+## DELETE
+- Deletes resource/data
+
+# HTTP Status Codes
+
+## 200 OK
+- Request successful
+
+## 403 Forbidden
+- Access denied
+
+## 404 Not Found
+- Requested page/resource not found
+
+## 500 Internal Server Error
+- Server-side issue/error
+
+# URL (Uniform Resource Locator)
+
+## What is URL?
+- Address/instructions for accessing internet resource
+
+Example:
+
+```text
+http://user:password@tryhackme.com:80/view-room?id=1#task3
+```
+
+# URL Components
+
+## Scheme
+- Protocol used for communication
+Examples:
+- HTTP
+- HTTPS
+- FTP
+
+## User:Password
+- Authentication credentials
+
+## Host
+- Domain/IP of target server
+
+Example:
+
+```text
+tryhackme.com
+```
+
+## Port
+- Service port to connect to
+
+Common:
+- 80 → HTTP
+- 443 → HTTPS
+
+## Path
+- Specific resource/page location
+
+Example:
+
+```text
+/view-room
+```
+
+## Query String
+- Extra information/data sent to server
+
+Example:
+
+```text
+?id=1
+```
+
+Meaning:
+- request resource with id = 1
+
+## Fragment
+- Reference to section within webpage
+
+Example:
+
+```text
+#task3
+```
+
+# HTTP Headers
+- Extra metadata/information sent with requests/responses
+
+# Request Headers
+
+## Host
+- Specifies target website/domain
+
+Example:
+
+```http
+Host: tryhackme.com
+```
+
+## User-Agent
+- Tells server browser/software being used
+
+Example:
+
+```http
+User-Agent: Firefox
+```
+
+## Referer
+- Shows which webpage redirected user
+
+Example:
+
+```http
+Referer: https://tryhackme.com
+```
+
+## Cookies
+- Stores session/user information
+
+# Response Headers
+
+## Content-Type
+- Type of data being returned
+
+Examples:
+- text/html
+- image/png
+- application/json
+
+## Content-Length
+- Size of response data
+
+## Server
+- Server software/version information
+
+# Example HTTP Request
+
+```http
+GET / HTTP/1.1
+Host: tryhackme.com
+User-Agent: Firefox
+Referer: https://tryhackme.com
+```
+
+# Example HTTP Response
+
+```http
+HTTP/1.1 200 OK
+Server: nginx
+Content-Type: text/html
+Content-Length: 98
+```
+
+# Response Body
+- Actual data/resource returned by server
+
+Examples:
+- HTML
+- CSS
+- images
+- JSON
+- videos
+
+Example:
+
+```html
+<html>
+<body>
+Welcome
+</body>
+</html>
+```
+
+# Stateless Protocol
+- HTTP does NOT remember previous requests automatically
+- Every request treated independently
+
+This is why:
+- cookies
+- sessions
+exist
+
+# Cookies
+
+## What are Cookies?
+- Small pieces of data stored in browser
+- Used to maintain session/state information
+
+## Why Cookies Exist
+HTTP is stateless:
+- server does NOT automatically remember previous requests
+
+Cookies help websites remember users/sessions.
+
+# Cookie Flow
+
+```text
+User logs in
+↓
+Server creates session
+↓
+Server sends cookie
+↓
+Browser stores cookie
+↓
+Browser sends cookie in future requests
+↓
+Server identifies user/session
+```
+
+# Example Cookie
+
+## Server Response
+
+```http
+Set-Cookie: session=abc123
+```
+
+## Future Browser Request
+
+```http
+Cookie: session=abc123
+```
+
+# Main Uses of Cookies
+- authentication
+- session management
+- user preferences
+- tracking
+
+# Session vs Cookie
+
+## Session
+- Stored on server
+- Contains user/session data
+
+## Cookie
+- Stored in browser
+- Usually stores session ID/token
+
+# Cookie Security Attributes
+
+## HttpOnly
+- Prevents JavaScript access to cookie
+
+## Secure
+- Cookie only sent over HTTPS
+
+## Expires / Max-Age
+- Defines cookie lifetime
+
+## SameSite
+- Helps prevent CSRF attacks
+
+# HTTP vs HTTPS
+
+## HTTP
+- Unencrypted communication
+- Insecure
+
+## HTTPS
+- Encrypted HTTP using SSL/TLS
+- Secure communication
+
+# Important Cybersecurity Insight
+Most web attacks target:
+- requests
+- responses
+- headers
+- cookies
+- sessions
+- query parameters
+
+Understanding HTTP is foundational for:
+- web security
+- APIs
+- Burp Suite
+- web pentesting
