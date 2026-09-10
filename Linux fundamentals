@@ -1,0 +1,892 @@
+# Linux Week 1 — Fundamentals
+
+## 1. What is Linux?
+
+### What?
+
+Linux is an operating system kernel used to manage computer hardware and provide services that applications need.
+
+A Linux-based operating system (such as Ubuntu) combines the Linux kernel with other software to provide a complete operating environment.
+
+### Why?
+
+Applications cannot directly manage hardware safely and efficiently.
+
+The operating system acts as the layer between applications/users and hardware.
+
+### Basic structure
+
+```text
+User
+  ↓
+Applications
+  ↓
+Shell / System Libraries
+  ↓
+Linux Kernel
+  ↓
+Hardware
+```
+
+The kernel manages things such as:
+
+* CPU
+* Memory
+* Storage
+* Processes
+* Devices
+* Networking
+
+---
+
+## 2. Kernel
+
+### What?
+
+The kernel is the core part of an operating system.
+
+### Why?
+
+It controls access to hardware and provides essential system services to programs.
+
+### Example
+
+When a program wants to read a file:
+
+```text
+Program
+   ↓
+System Call
+   ↓
+Kernel
+   ↓
+Filesystem / Storage
+   ↓
+File data
+```
+
+The program does not normally access the disk hardware directly.
+
+---
+
+## 3. User Space and Kernel Space
+
+Linux separates normal programs from the kernel.
+
+### User Space
+
+Where normal applications and processes run.
+
+Examples:
+
+* Browser
+* Terminal
+* Text editor
+* Python program
+* Shell
+
+### Kernel Space
+
+Where the kernel operates with privileged access to system resources.
+
+```text
+USER SPACE
+────────────────────
+Applications
+Shell
+Python
+Editors
+────────────────────
+        ↓
+   System Calls
+        ↓
+────────────────────
+KERNEL SPACE
+────────────────────
+Linux Kernel
+────────────────────
+        ↓
+────────────────────
+HARDWARE
+────────────────────
+CPU
+RAM
+Disk
+Network devices
+```
+
+### Why the separation?
+
+A normal program should not have unrestricted access to hardware or other processes.
+
+This separation improves:
+
+* Security
+* Stability
+* Isolation
+
+---
+
+# 4. Terminal, Shell and Kernel
+
+These are different things.
+
+### Terminal
+
+The terminal is the interface through which you interact with the command line.
+
+### Shell
+
+The shell interprets commands and executes programs.
+
+Examples:
+
+* Bash
+* Zsh
+
+### Kernel
+
+The kernel manages the underlying system resources.
+
+### Example
+
+When you type:
+
+```bash
+ls
+```
+
+the rough flow is:
+
+```text
+You
+ ↓
+Terminal
+ ↓
+Shell
+ ↓
+ls program
+ ↓
+System calls
+ ↓
+Kernel
+ ↓
+Filesystem
+ ↓
+Directory entries
+```
+
+---
+
+# 5. Linux Filesystem
+
+Linux organizes files and directories into a hierarchical tree.
+
+The top of this tree is:
+
+```text
+/
+```
+
+This is called the **root directory**.
+
+Example:
+
+```text
+/
+├── home/
+│   └── arav/
+│       ├── Documents/
+│       ├── Downloads/
+│       └── Projects/
+├── etc/
+├── var/
+├── tmp/
+└── usr/
+```
+
+Everything begins from `/`.
+
+---
+
+# 6. Root Directory vs Home Directory
+
+Do not confuse these two.
+
+### `/`
+
+The root directory.
+
+It is the top of the entire Linux filesystem.
+
+### `~`
+
+The current user's home directory.
+
+For example:
+
+```text
+/home/arav
+```
+
+may be represented as:
+
+```text
+~
+```
+
+So:
+
+```bash
+cd /
+```
+
+takes you to the filesystem root.
+
+While:
+
+```bash
+cd ~
+```
+
+takes you to your home directory.
+
+---
+
+# 7. Important Path Symbols
+
+Linux uses several shortcuts when working with paths.
+
+| Symbol | Meaning                       |
+| ------ | ----------------------------- |
+| `/`    | Root directory                |
+| `~`    | Current user's home directory |
+| `.`    | Current directory             |
+| `..`   | Parent directory              |
+
+Example:
+
+Suppose you are here:
+
+```text
+/home/arav/Linux/Backup
+```
+
+Then:
+
+```text
+.     → /home/arav/Linux/Backup
+..    → /home/arav/Linux
+../.. → /home/arav
+~     → /home/arav
+/     → /
+```
+
+---
+
+# 8. Absolute vs Relative Paths
+
+## Absolute Path
+
+An absolute path starts from `/`.
+
+Example:
+
+```text
+/home/arav/Linux/Documents/notes.txt
+```
+
+It describes the complete location of the file.
+
+## Relative Path
+
+A relative path starts from your current location.
+
+Example:
+
+```text
+Documents/notes.txt
+```
+
+Its meaning depends on where you currently are.
+
+### Key idea
+
+```text
+Absolute path
+→ Where is it from the filesystem root?
+
+Relative path
+→ Where is it from where I currently am?
+```
+
+---
+
+# 9. Files and Directories
+
+### File
+
+A file stores data.
+
+Examples:
+
+```text
+notes.txt
+report.pdf
+image.png
+script.py
+```
+
+### Directory
+
+A directory organizes files and other directories.
+
+Example:
+
+```text
+Documents/
+├── notes.txt
+├── report.pdf
+└── todo.txt
+```
+
+A directory is essentially an organizational structure containing references to filesystem entries.
+
+---
+
+# 10. `pwd`
+
+### What?
+
+`pwd` shows your current working directory.
+
+```bash
+pwd
+```
+
+Example:
+
+```text
+/home/arav/Linux
+```
+
+### Why?
+
+Your current directory determines how relative paths are interpreted.
+
+Think of it as:
+
+> "Where am I right now?"
+
+---
+
+# 11. `ls`
+
+### What?
+
+`ls` lists the entries inside a directory.
+
+```bash
+ls
+```
+
+Example:
+
+```text
+Documents
+Images
+Projects
+notes.txt
+```
+
+### Important options
+
+```bash
+ls
+```
+
+Normal listing.
+
+```bash
+ls -1
+```
+
+Displays one entry per line.
+
+```bash
+ls -l
+```
+
+Displays detailed information.
+
+```bash
+ls -a
+```
+
+Includes hidden files.
+
+### Important concept
+
+`ls` lists **directory entries**.
+
+It does not need to read the contents of every file in the directory.
+
+---
+
+# 12. Hidden Files
+
+Linux commonly treats filenames beginning with `.` as hidden.
+
+Example:
+
+```text
+.bashrc
+.git
+.env
+```
+
+Normal:
+
+```bash
+ls
+```
+
+may not show them.
+
+Use:
+
+```bash
+ls -a
+```
+
+to include them.
+
+### Why are hidden files important in cybersecurity?
+
+Some hidden files can contain configuration or security-sensitive information.
+
+Examples:
+
+```text
+.ssh/
+.git/
+.env
+.bash_history
+```
+
+Hidden does **not** mean secure.
+
+---
+
+# 13. `cd`
+
+### What?
+
+`cd` changes your current working directory.
+
+```bash
+cd Documents
+```
+
+moves into `Documents`.
+
+### Examples
+
+Go to parent:
+
+```bash
+cd ..
+```
+
+Go two levels up:
+
+```bash
+cd ../..
+```
+
+Go to home:
+
+```bash
+cd ~
+```
+
+Go to filesystem root:
+
+```bash
+cd /
+```
+
+### Important
+
+`cd` changes the shell's current working directory.
+
+It does not move or modify files.
+
+---
+
+# 14. `mkdir`
+
+### What?
+
+Creates a directory.
+
+```bash
+mkdir Projects
+```
+
+creates:
+
+```text
+Projects/
+```
+
+### Example
+
+```bash
+mkdir Linux
+cd Linux
+mkdir Documents
+```
+
+Result:
+
+```text
+Linux/
+└── Documents/
+```
+
+---
+
+# 15. `touch`
+
+### What?
+
+`touch` can create an empty file if the file does not already exist.
+
+```bash
+touch notes.txt
+```
+
+Result:
+
+```text
+notes.txt
+```
+
+### Important
+
+`touch` does not mean "write text into the file."
+
+It creates the file when necessary and can also update its timestamps.
+
+---
+
+# 16. Reading Files
+
+## `cat`
+
+Used to display file contents.
+
+```bash
+cat notes.txt
+```
+
+Good for relatively small files.
+
+---
+
+## `less`
+
+Used to view files interactively, especially large files.
+
+```bash
+less large.log
+```
+
+Useful for:
+
+* Logs
+* Large text files
+* Security investigation
+
+You can move through the file without dumping everything into the terminal at once.
+
+---
+
+# 17. Editing Files with `nano`
+
+`nano` is a terminal-based text editor.
+
+```bash
+nano notes.txt
+```
+
+You can:
+
+* Open a file
+* Add text
+* Modify text
+* Save changes
+* Exit
+
+Example:
+
+```bash
+nano todo.txt
+```
+
+---
+
+# 18. `cp`
+
+### What?
+
+Copies a file or directory.
+
+Example:
+
+```bash
+cp notes.txt backup.txt
+```
+
+Result:
+
+```text
+notes.txt
+backup.txt
+```
+
+The original remains.
+
+### Key idea
+
+```text
+cp
+→ duplicate
+```
+
+---
+
+# 19. `mv`
+
+### What?
+
+`mv` moves or renames files and directories.
+
+Move:
+
+```bash
+mv notes.txt Documents/
+```
+
+Rename:
+
+```bash
+mv old.txt new.txt
+```
+
+### Key idea
+
+The same command performs both operations because renaming is essentially changing the name/location associated with a filesystem entry.
+
+For a move within the same filesystem, Linux can generally change the directory entry rather than copying the entire file's contents.
+
+---
+
+# 20. `rm`
+
+### What?
+
+Removes files.
+
+```bash
+rm notes.txt
+```
+
+The file is removed.
+
+### Important
+
+Linux normally does not provide a recycle-bin step for `rm`.
+
+Therefore:
+
+```bash
+rm important.txt
+```
+
+should be treated carefully.
+
+### Removing directories
+
+A normal:
+
+```bash
+rm directory
+```
+
+does not remove a directory.
+
+Recursive removal requires additional options and should be used carefully.
+
+---
+
+# 21. `rmdir`
+
+### What?
+
+Removes an **empty directory**.
+
+```bash
+rmdir Projects
+```
+
+If the directory contains files, `rmdir` will refuse to remove it.
+
+### Key idea
+
+```text
+rmdir
+→ removes empty directories only
+```
+
+---
+
+# 22. `ls -l` — First Character
+
+A detailed listing may look like:
+
+```text
+-rw-r--r--
+drwxr-xr-x
+```
+
+The first character tells you the type of filesystem entry.
+
+```text
+-   → regular file
+d   → directory
+```
+
+So:
+
+```text
+-rw-r--r--
+```
+
+is a regular file.
+
+While:
+
+```text
+drwxr-xr-x
+```
+
+is a directory.
+
+The remaining permission characters will be studied properly in **Week 2: Users, Groups & Permissions**.
+
+---
+
+# 23. Week 1 Mental Model
+
+The most important thing is not memorizing commands.
+
+You should be able to mentally understand:
+
+```text
+Filesystem
+│
+├── /
+│   └── root of everything
+│
+├── /home
+│   └── user's personal directories
+│
+└── /home/arav
+    ├── Documents
+    ├── Projects
+    └── files
+```
+
+And reason about your location:
+
+```text
+pwd
+ ↓
+Where am I?
+
+ls
+ ↓
+What's here?
+
+cd
+ ↓
+Where do I want to go?
+
+mkdir
+ ↓
+What directory do I need?
+
+touch
+ ↓
+What file do I need?
+
+cat / less
+ ↓
+What does the file contain?
+
+nano
+ ↓
+How do I edit it?
+
+cp
+ ↓
+How do I duplicate it?
+
+mv
+ ↓
+How do I move/rename it?
+
+rm
+ ↓
+How do I remove it?
+```
+
+---
+
+# 24. Cybersecurity Connection
+
+Linux fundamentals matter because security work constantly involves interacting with the filesystem.
+
+Examples:
+
+```text
+Investigating logs
+        ↓
+       less
+
+Finding configuration files
+        ↓
+       filesystem navigation
+
+Investigating suspicious files
+        ↓
+       ls / cat / file operations
+
+Examining user environments
+        ↓
+       home directories
+
+Investigating credentials/configuration
+        ↓
+       hidden files and directories
+
+Managing security tools
+        ↓
+       filesystem + permissions
+```
+
+Linux is not just another topic to memorize.
+
+It is the environment in which a large amount of cybersecurity work happens.
